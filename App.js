@@ -1,4 +1,6 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Dimensions, ScrollView } from "react-native";
+
+const SCREEN_WIDTH = Dimensions.get("window").width;
 
 export default function App() {
   return (
@@ -6,12 +8,42 @@ export default function App() {
       <View style={styles.city}>
         <Text style={styles.cityName}>Seoul</Text>
       </View>
-      <View style={styles.weather}>
+      <ScrollView
+        pagingEnabled
+        horizontal
+        contentContainer
+        showsHorizontalScrollIndicator={false}
+        Style={styles.weather}
+      >
         <View style={styles.day}>
           <Text style={styles.temp}>27</Text>
-          <Text style={styles.description}>Sunny</Text>
+          <Text style={styles.description}>Cloudy</Text>
         </View>
-      </View>
+        <View style={styles.day}>
+          <Text style={styles.temp}>27</Text>
+          <Text style={styles.description}>Cloudy</Text>
+        </View>
+        <View style={styles.day}>
+          <Text style={styles.temp}>27</Text>
+          <Text style={styles.description}>Cloudy</Text>
+        </View>
+        <View style={styles.day}>
+          <Text style={styles.temp}>27</Text>
+          <Text style={styles.description}>Cloudy</Text>
+        </View>
+        <View style={styles.day}>
+          <Text style={styles.temp}>27</Text>
+          <Text style={styles.description}>Cloudy</Text>
+        </View>
+        <View style={styles.day}>
+          <Text style={styles.temp}>27</Text>
+          <Text style={styles.description}>Cloudy</Text>
+        </View>
+        <View style={styles.day}>
+          <Text style={styles.temp}>27</Text>
+          <Text style={styles.description}>Cloudy</Text>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -27,10 +59,9 @@ const styles = StyleSheet.create({
     fontSize: 60,
     fontWeight: "600",
   },
-  weather: { flex: 3 },
+  weather: {},
   day: {
-    backgroundColor: "teal",
-    flex: 1,
+    width: SCREEN_WIDTH,
     alignItems: "center",
   },
   temp: {
