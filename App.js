@@ -8,10 +8,20 @@ import {
   ActivityIndicator,
 } from "react-native";
 import * as Location from "expo-location";
+import { Fontisto } from "@expo/vector-icons";
 
 const API_KEY = "b316c980441d737b14db685d96bfe1f5";
-
 const SCREEN_WIDTH = Dimensions.get("window").width;
+
+const icons = {
+  Clear: "day-sunny",
+  Clouds: "cloudy",
+  Rain: "rain",
+  Atmosphere: "cloudy-gusts",
+  Snow: "snow",
+  Drizzle: "day-rain",
+  Thunderstorm: "lightning",
+};
 
 export default function App() {
   const [ok, setOk] = useState(true);
@@ -55,7 +65,7 @@ export default function App() {
         Style={styles.weather}
       >
         {weathers.length === 0 ? (
-          <View style={styles.day}>
+          <View style={{ ...styles.day, alignItems: "center" }}>
             <ActivityIndicator color="white" size="large" />
           </View>
         ) : (
@@ -63,9 +73,24 @@ export default function App() {
             (weather, idx) =>
               idx % 8 == 0 && (
                 <View style={styles.day} key={idx}>
-                  <Text style={styles.temp}>
-                    {parseFloat(weather.main.temp).toFixed(1)}
-                  </Text>
+                  <Text>{}</Text>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      width: "100%",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Text style={styles.temp}>
+                      {parseFloat(weather.main.temp).toFixed(1)}
+                    </Text>
+                    <Fontisto
+                      name={icons[weather.weather[0].main]}
+                      size={68}
+                      color="white"
+                    />
+                  </View>
                   <Text style={styles.description}>
                     {weather.weather[0].main}
                   </Text>
