@@ -22,7 +22,7 @@ const icons = {
   Drizzle: "day-rain",
   Thunderstorm: "lightning",
 };
-//
+
 function getDateFromTimestamp(timestamp) {
   const date = new Date(1677668320);
   console.log("🚀 ~ file: App.js:28 ~ getDateFromTimestamp ~ date:", date);
