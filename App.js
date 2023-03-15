@@ -22,6 +22,19 @@ const icons = {
   Drizzle: "day-rain",
   Thunderstorm: "lightning",
 };
+//
+function getDateFromTimestamp(timestamp) {
+  const date = new Date(1677668320);
+  console.log("🚀 ~ file: App.js:28 ~ getDateFromTimestamp ~ date:", date);
+  var year = date.getFullYear().toString().slice(-2); //년도 뒤에 두자리
+  var month = ("0" + (date.getMonth() + 1)).slice(-2); //월 2자리 (01, 02 ... 12)
+  var day = ("0" + date.getDate()).slice(-2); //일 2자리 (01, 02 ... 31)
+  var hour = ("0" + date.getHours()).slice(-2); //시 2자리 (00, 01 ... 23)
+  var minute = ("0" + date.getMinutes()).slice(-2); //분 2자리 (00, 01 ... 59)
+  var second = ("0" + date.getSeconds()).slice(-2); //초 2자리 (00, 01 ... 59)}
+
+  return { m: month, d: day, h: hour };
+}
 
 export default function App() {
   const [ok, setOk] = useState(true);
@@ -62,8 +75,7 @@ export default function App() {
         horizontal
         contentContainer
         showsHorizontalScrollIndicator={false}
-        Style={styles.weather}
-      >
+        Style={styles.weather}>
         {weathers.length === 0 ? (
           <View style={{ ...styles.day, alignItems: "center" }}>
             <ActivityIndicator color="white" size="large" />
@@ -73,15 +85,13 @@ export default function App() {
             (weather, idx) =>
               idx % 8 == 0 && (
                 <View style={styles.day} key={idx}>
-                  <Text>{}</Text>
                   <View
                     style={{
                       flexDirection: "row",
                       alignItems: "center",
                       width: "100%",
                       justifyContent: "space-between",
-                    }}
-                  >
+                    }}>
                     <Text style={styles.temp}>
                       {parseFloat(weather.main.temp).toFixed(1)}
                     </Text>
@@ -96,6 +106,14 @@ export default function App() {
                   </Text>
                   <Text style={styles.tinyText}>
                     {weather.weather[0].description}
+                  </Text>
+                  <Text
+                    style={{
+                      ...styles.description,
+                      marginTop: 30,
+                    }}>
+                    {getDateFromTimestamp(weather.dt).m}월{" "}
+                    {getDateFromTimestamp(weather.dt).d}일
                   </Text>
                 </View>
               )
